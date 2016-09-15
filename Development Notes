@@ -1,0 +1,6 @@
+Add animations for:
+  - Player back blur when moving to simulate speed
+  - Coin rotations, need to fix animation speed
+  - Coin collisions create particle effect
+
+Replace if statements in level Creation with ENUM solution
