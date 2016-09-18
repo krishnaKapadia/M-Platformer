@@ -28,7 +28,7 @@ class Coin extends Collidable{
       currentFrame = (currentFrame + 1) % numFrames;  // Use % to cycle through frames
   if(timer % delay == 1){
     //for (int x = 0; x < width; x += images[0].width + 10) {
-      image(images[(currentFrame) % numFrames], pos.x - images[0].width / 2, pos.y - images[0].height / 2);
+      image(images[(currentFrame) % numFrames], pos.x, pos.y);
       // fill(255, 0, 0);
       // rect(pos.x, pos.y, widthC, heightC);
     //}
