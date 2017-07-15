@@ -8,16 +8,14 @@ class Gate extends Collidable{
   Gate(int x, int y){
     sprite = loadImage("assets/Gate.png");
     pos = new PVector(x, y);
+    widthG = 32;
+    heightG = 32;
   }
 
   void draw(){
-    if(!isOpen) image(sprite, pos.x, pos.y);
-    else{
-      fill(0, 0, 255);
-      rect(pos.x, pos.y, widthG, heightG);
-    }
+   image(sprite, pos.x , pos.y);
   }
-  
+
   void openGate(){
     this.isOpen = true;
   }

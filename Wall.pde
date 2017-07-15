@@ -2,17 +2,19 @@ class Wall extends Collidable{
   String type = "wall";
   float x, y;
   float widthW, heightW;
+  public PImage sprite;
 
   Wall(float x, float y, float widthW, float heightW){
     this.x = x;
     this.y = y;
     this.widthW = widthW;
     this.heightW = heightW;
+    //sprite = loadImage("assets/levels/floorTile.png");
+    sprite = wallSprite;
   }
 
   void draw(){
-    fill(#A5A5A5);
-    rect(x, y, widthW, heightW);
+    image(sprite, x, y);
   }
 
   //Returns the width, the height and a position vector

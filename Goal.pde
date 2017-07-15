@@ -15,6 +15,7 @@ class Goal extends Collidable{
       images[i] = loadImage("assets/portal/Portal" + (i + 1) + ".png");
       images[i].resize(32, 0); //resize image to 32x32
     }
+    
   }
 
   void draw(){

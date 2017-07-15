@@ -1,6 +1,3 @@
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.Ellipse2D;
-
 abstract class Collidable{
 
   abstract float getWidth();
@@ -8,25 +5,44 @@ abstract class Collidable{
   abstract PVector getPosition();
   abstract String getType();
   abstract void draw();
-//  abstract String type;
 
-  //Gets the bounds off the current Object
-  Rectangle2D getBounds() {
-    return new Rectangle2D.Float(getPosition().x, getPosition().y, getWidth(), getHeight());
+  //Returns wether an object is colliding with another
+   boolean isColliding(Collidable other) {
+    if (this.getPosition().x + getWidth() > other.getPosition().x && this.getPosition().x < other.getPosition().x + other.getWidth()
+    && this.getPosition().y + getHeight() > other.getPosition().y && this.getPosition().y < other.getPosition().y + other.getHeight())
+    return true;
+    return false;
   }
 
-  Ellipse2D getBoundsEllipse() {
-    return new Ellipse2D.Float(getPosition().x, getPosition().y, getWidth(), getHeight());
-  }
+  //Calculates projection vector to reset position after collision
+  PVector calcProjection(Collidable other){
+     PVector pos = this.getPosition();
+     PVector otherPos = other.getPosition();
+     float minDY = 0;
+     float minDX = 0;
 
-//Returns true if it is colliding with the other object
-  boolean isColliding(Collidable other) {
-    return (getBounds().intersects(other.getBounds()));
-  }
+     if(pos.x + this.getWidth() > otherPos.x && pos.x < otherPos.x && pos.y + this.getHeight() > otherPos.y && pos.y < otherPos.y) {
+        minDY = (otherPos.y) - (pos.y + this.getHeight());
+        minDX = 0;
+     }
 
-  boolean isCollidingEllipse(Collidable other) {
-    return (getBoundsEllipse().intersects(other.getBounds()));
-  }
+     if(pos.x + this.getWidth() > otherPos.x && pos.y < otherPos.y){
+        minDY = (otherPos.y + other.getHeight()) - (pos.y);
+        minDX = 0;
+        println("corner");
+     }
 
+     return new PVector(minDX, minDY);
+   //   if(this.isColliding(other)){
+   //      PVector pos = this.getPosition();
+   //      PVector otherPos = other.getPosition();
+   //
+   //      if(pos.x > otherPos.x)
+     //
+   //      PVector proj = new PVector(this.getPosition().x - other.getPosition().x, this.getPosition().y - other.getPosition().y);
+   //      return proj;
+   //   }
+   //   return new PVector(0, 0);
+ }
 
 }
